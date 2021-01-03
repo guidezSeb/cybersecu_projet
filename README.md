@@ -1,15 +1,13 @@
 # hapi-friends
 
+# Lancer le projet 
+
+Lancez la commande `docker build -t hapifriends .` puis `docker run -d -p 8080:8080 hapifriends`
+
 ## Description du projet
 
-hapi-friends est un projet d'API réseau social basique effectué dans le cadre du cours Spring de M1 III, Université Catholique de Lille.
+J'ai repris un projet fait en groupe pendant le cours de Spring de M1 III avec Johann De Almedia et Gianni Giudice. Hapi-friends est un projet d'API réseau social basique avec une base de données interne H2.
 
-## Membres du groupe
-
-Les membres du groupes sont les suivants :
-- Johann De Almeida
-- Sébastien Guidez
-- Gianni Giudice
 
 ## Fonctionnalités
 
@@ -32,18 +30,5 @@ Sur hapi-friends, il est possible d'effectuer les actions suivantes :
 
 - Supprimer un utilisateur existant en base en renseignant son id via la route **/users/{id}** (**DELETE**)
 
-```json
-{
-    "id": 4,
-    "pseudo": "test",
-    "password": "test",
-    "surname": "Test",
-    "firstname": "Test",
-    "email": "test.test@lacatholille.fr",
-    "mob_number": null,
-    "friends": [
-    ]
-}
-```
-
 - Rechercher un utilisateur existant en base en renseignant son nom via la route **/users/{name}** (**GET**)
+
