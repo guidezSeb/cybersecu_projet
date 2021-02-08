@@ -22,15 +22,15 @@ public class UserController {
     //Méthode avec requestBody
     @PostMapping("/sign-up")
     public void signUp(@RequestBody User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        // userRepository.save(user);
     }
     //Méthode avec requestParam
     @PostMapping("/sign-up2")
     public ResponseEntity<User> addThisUser (@RequestParam String pseudo, @RequestParam String password, @RequestParam String nom, @RequestParam String prenom, @RequestParam String email, @RequestParam String numero) {
         User myUser = new User();
         myUser.setPseudo(pseudo);
-        myUser.setPassword(bCryptPasswordEncoder.encode(password));
+       myUser.setPassword( password ); //bCryptPasswordEncoder.encode(password));
         myUser.setSurname(nom);
         myUser.setFirstname(prenom);
         myUser.setEmail(email);
