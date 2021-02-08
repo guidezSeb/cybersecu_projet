@@ -8,3 +8,4 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findByTitleIsContainingIgnoreCase(String title);
     List<Post> findByTextIsContainingIgnoreCase(String text);
 }
+ 

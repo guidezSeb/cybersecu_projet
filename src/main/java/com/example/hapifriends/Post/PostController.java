@@ -20,7 +20,7 @@ public class PostController {
     public List<Post> getPost() {
         return postRepository.findAll();
     }
-
+ 
     @GetMapping("/{id}")
     public ResponseEntity<Post> GetThisPost(@PathVariable int id) throws ResourceNotFoundException {
         Post i = postRepository.findById(id)

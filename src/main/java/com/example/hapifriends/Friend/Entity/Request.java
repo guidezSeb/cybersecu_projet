@@ -17,3 +17,4 @@ public class Request {
     @ManyToOne
     private User user2;
 }
+ 

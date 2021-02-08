@@ -17,3 +17,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             @Param("id2") Integer id2
     );
 }
+ 

@@ -65,7 +65,7 @@ public class UserController {
         userRepository.delete(myUser);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
-
+ 
     @PutMapping(path="/{id}")
     public ResponseEntity<User> changeClient (@PathVariable int id, @RequestParam(required = false) String nom, @RequestParam(required = false) String prenom, @RequestParam(required = false) String email, @RequestParam(required = false) String numero) throws ResourceNotFoundException {
         User myUser = userRepository.findById(id)
