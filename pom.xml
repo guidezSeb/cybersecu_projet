@@ -14,13 +14,12 @@
     <name>hapifriends</name>
     <description>Demo project for Spring Boot</description>
     <properties>
+    <java.version>11</java.version>
         <sonar.projectKey>guidezSeb_cybersecu_projet</sonar.projectKey>
         <sonar.organization>guidezseb</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties> 
-    <properties>
-        <java.version>11</java.version>
-    </properties>
+    
    
     <dependencies>
         <dependency>
