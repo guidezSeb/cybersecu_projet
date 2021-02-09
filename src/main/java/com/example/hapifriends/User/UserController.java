@@ -41,7 +41,7 @@ public class UserController {
 
     @GetMapping
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return  userRepository.findAll();
     }
 
     @GetMapping("/{id}")
