@@ -1,3 +1,8 @@
+on:
+  push:
+    branches:
+    - push
+
 sonar:
     name: Code-Quality Check
     runs-on: ubuntu-latest
