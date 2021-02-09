@@ -10,7 +10,7 @@ sonar:
       - name: SonarCloud Scan
         run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           
 artifact:
     name: Publish Artifact 
@@ -25,7 +25,7 @@ artifact:
       - name: Publish artifact on GitHub Packages
         run: mvn -B clean deploy -DskipTests
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 docker:
     name: Publish Docker Image
