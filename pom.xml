@@ -18,7 +18,7 @@
         
     </properties> 
     
-   <profiles>
+   <!-- <profiles>
   <profile>
    <id>sonar</id>
    <properties>
@@ -50,15 +50,15 @@
     </plugins>
    </build>
   </profile>
- </profiles>
+ </profiles> -->
 
-<distributionManagement>
+<!-- <distributionManagement>
   <repository>
    <id>github</id>
    <name>cybersecu_projet</name>
    <url>localhost:8080</url>
   </repository>
-<distributionManagement>
+<distributionManagement> -->
 
     <dependencies>
         <dependency>
