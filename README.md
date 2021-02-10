@@ -2,9 +2,9 @@
 
 ## Lancer le projet 
 
-Lancez la commande `docker build -t hapifriends .` puis `docker run hapifriends`. 
-Lors de la premiere utilisation, il est possible qu'il vous faille lancer cette commande `docker run -d -p 8080:8080 hapifriends`
-Il vous faudra alors entrer l'URL : `http://localhost:8080/`. Vous arriverez sur la page d'acceuil (qui est vide). Pour voir les differentes pages disponible, veuillez vous rendre dans la partie 'Fonctionnalités'.
+- Lancez la commande `docker build -t hapifriends .` puis `docker run hapifriends`. 
+- Lors de la premiere utilisation, il est possible qu'il vous faille lancer cette commande `docker run -d -p 8080:8080 hapifriends`
+- Il vous faudra alors entrer l'URL : `http://localhost:8080/`. Vous arriverez sur la page d'acceuil (qui est vide). Pour voir les differentes pages disponible, veuillez vous rendre dans la partie 'Fonctionnalités'.
 
 ## Description du projet
 
@@ -48,7 +48,7 @@ Sur hapi-friends, il est possible d'effectuer les actions suivantes :
 
 - Rechercher un utilisateur existant en base en renseignant son nom via la route **/users/{name}** (**GET**)
 
-Les memes fonctionnalités existent pour posts et friends avec les routes adaptées. Il n'y a rien de particulier qui s'affiche sur la page localhost.
+Les memes fonctionnalités existent pour posts et friends avec les routes adaptées suivantes : `http://localhost:8080/posts` et `http://localhost:8080/friends`. Il n'y a rien de particulier qui s'affiche sur la page localhost.
 
 Je vous conseille d'utiliser le logiciel Postman afin d'effectuer les requetes.
 
@@ -69,23 +69,23 @@ Si le fichier png n'est pas visible voici le lien markdown :
 
 ## Objectif de securité
 
-*Confidentialité* : 4/5. Quand l'utilisateur devra fournir un mot de passe lors de la creation du compte, il devra en valider un complexe. De plus, par la suite, il sera haché et stocké dans la base de données sécurisé. Il aura aussi la possibilité de repondre anonymement sur le site.
+- *Confidentialité* : 4/5. Quand l'utilisateur devra fournir un mot de passe lors de la creation du compte, il devra en valider un complexe. De plus, par la suite, il sera haché et stocké dans la base de données sécurisé. Il aura aussi la possibilité de repondre anonymement sur le site.
 
-*Intégrité* : 3/5. Grace à l'API, il y aura des mise à jour frequente. Cependant, il risque d'y avoir une demande de modification nécessaire pour changer une donnée.
+- *Intégrité* : 3/5. Grace à l'API, il y aura des mise à jour frequente. Cependant, il risque d'y avoir une demande de modification nécessaire pour changer une donnée.
 
-*Disponibilité* : 2/5. L'application utlisant Docker, dès que le container est construit, le site se lance. Pour le moment, l'application n'est déployée qu'en local donc cela peut encore être ameliorer.
+- *Disponibilité* : 2/5. L'application utlisant Docker, dès que le container est construit, le site se lance. Pour le moment, l'application n'est déployée qu'en local donc cela peut encore être ameliorer.
 
-*Traçabilité* : 2/5. Pour ce projet, l'application ne cherche pas à respecter les exigences légales tel que les RGPD (avec un bandeau de cookies). Cependant, aucune information de l'utilisateur n'a pour objectif d'être retenu. Les données seront sauvegardé dans la base de données interne et via l'API mais seront le mieux proteger possible.
+- *Traçabilité* : 2/5. Pour ce projet, l'application ne cherche pas à respecter les exigences légales tel que les RGPD (avec un bandeau de cookies). Cependant, aucune information de l'utilisateur n'a pour objectif d'être retenu. Les données seront sauvegardé dans la base de données interne et via l'API mais seront le mieux proteger possible.
 
 ## Vulnérabilité
 
 ### L'injection SQL
 Une erreur d'injection SQL se produit lorsque les données entrent dans un programme à partir d'une source non fiable. Par exemple, en rentrant une ligne de commande  dans un json dans le Postman.
 
-*Confidentialité*: étant donné que les bases de données SQL contiennent généralement des données sensibles, la perte de confidentialité est un problème fréquent avec les vulnérabilités d'injection SQL.
-*Authentification*: si de mauvaises commandes SQL sont utilisées pour vérifier les noms d'utilisateur et les mots de passe, il peut être possible de se connecter à un système en tant qu'autre utilisateur sans connaissance préalable du mot de passe.
-*Autorisation*: si les informations d'autorisation sont conservées dans une base de données SQL, il peut être possible de modifier ces informations en exploitant avec succès une vulnérabilité d'injection SQL.
-*Intégrité*: tout comme il peut être possible de lire des informations sensibles, il est également possible d'apporter des modifications ou même de supprimer ces informations avec une attaque par injection SQL.
+- *Confidentialité*: étant donné que les bases de données SQL contiennent généralement des données sensibles, la perte de confidentialité est un problème fréquent avec les vulnérabilités d'injection SQL.
+- *Authentification*: si de mauvaises commandes SQL sont utilisées pour vérifier les noms d'utilisateur et les mots de passe, il peut être possible de se connecter à un système en tant qu'autre utilisateur sans connaissance préalable du mot de passe.
+- *Autorisation*: si les informations d'autorisation sont conservées dans une base de données SQL, il peut être possible de modifier ces informations en exploitant avec succès une vulnérabilité d'injection SQL.
+- *Intégrité*: tout comme il peut être possible de lire des informations sensibles, il est également possible d'apporter des modifications ou même de supprimer ces informations avec une attaque par injection SQL.
 
 ### Faille XSS
 
