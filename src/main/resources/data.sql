@@ -10,8 +10,8 @@ VALUES ('gs', 'gs', 'Guidez', 'Sébastien', 'sebastien.guidez@lacatholille.fr', 
 INSERT INTO friends(user_id, friend_id) VALUES (1, 3);
 INSERT INTO friends(user_id, friend_id) VALUES (3, 1);
 
-INSERT INTO post(text, title, author)
-VALUES ('bjr','ceci est le premier post',  1);
+INSERT INTO post(text, title, ispublic, author, photo)
+VALUES ('bjr','ceci est le premier post', 0, 1, 'photo.png');
 
-INSERT INTO post(text, title,ispublic, author)
-VALUES ('premier post','ceci est le Deuxieme post', 0, 1);
+INSERT INTO post(text, title, ispublic, author,photo)
+VALUES ('premier post','ceci est le Deuxieme post', 0, 1, 'photo2.jpg');

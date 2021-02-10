@@ -4,6 +4,7 @@
 
 Lancez la commande `docker build -t hapifriends .` puis `docker run hapifriends`. 
 Lors de la premiere utilisation, il est possible qu'il vous faille lancer cette commande `docker run -d -p 8080:8080 hapifriends`
+Il vous faudra alors entrer l'URL : `http://localhost:8080/`. Vous arriverez sur la page d'acceuil (qui est vide). Pour voir les differentes pages disponible, veuillez vous rendre dans la partie 'Fonctionnalités'.
 
 ## Description du projet
 
@@ -31,9 +32,32 @@ Sur hapi-friends, il est possible d'effectuer les actions suivantes :
 
 - Supprimer un utilisateur existant en base en renseignant son id via la route **/users/{id}** (**DELETE**)
 
+```json
+{
+    "id": 4,
+    "pseudo": "test",
+    "password": "test",
+    "surname": "Test",
+    "firstname": "Test",
+    "email": "test.test@lacatholille.fr",
+    "mob_number": null,
+    "friends": [
+    ]
+}
+```
+
 - Rechercher un utilisateur existant en base en renseignant son nom via la route **/users/{name}** (**GET**)
 
 Les memes fonctionnalités existent pour posts et friends avec les routes adaptées. Il n'y a rien de particulier qui s'affiche sur la page localhost.
+
+Je vous conseille d'utiliser le logiciel Postman afin d'effectuer les requetes.
+
+## Base de donnée
+Pour acceder à la base de donnée h2. il vous suffit d'aller à l'URL suivante: `http://localhost:8080/h2-console`.
+Il y a 3 champs à modifier par les réponses suivantes:
+- `JDBC URL:` jdbc:h2:mem:testdb
+- `User Name:` admin
+- `Password:` admin
 
 ## Surface d'attaque
 
@@ -63,8 +87,21 @@ Une erreur d'injection SQL se produit lorsque les données entrent dans un progr
 *Autorisation*: si les informations d'autorisation sont conservées dans une base de données SQL, il peut être possible de modifier ces informations en exploitant avec succès une vulnérabilité d'injection SQL.
 *Intégrité*: tout comme il peut être possible de lire des informations sensibles, il est également possible d'apporter des modifications ou même de supprimer ces informations avec une attaque par injection SQL.
 
-### Les mots de passe non cryptés
+### Faille XSS
 
-### faille XSS
+C'est un type d'injection, dans lequel des scripts malveillants sont injectés dans des sites Web. Par exemple, via le Json d'authentification. Il serait alors tout à fait possible de rentrer des informations ou tout autre type de code dans le Json. Par exemple, quelqu'un de malveillant pourrait envoyer une alert JavaScript sur une page lorsque qu'un utilisateur arrive dessus.
 
-C'est un type d'injection, dans lequel des scripts malveillants sont injectés dans des sites Web. Par exemple, via le Json d'authentification.
+L'exploitation d'une faille de type XSS permettrait à un intrus de réaliser les opérations suivantes :
+- Redirection (parfois de manière transparente) de l'utilisateur (souvent dans un but d'hameçonnage)
+- Vol d'informations, par exemple sessions et cookies.
+- Actions sur le site faillible, à l'insu de la victime et sous son identité (envoi de messages, suppression de données…)
+- Rendre la lecture d'une page difficile (boucle infinie d'alertes par exemple).
+
+
+### Condition de dépassement 
+
+Une condition de dépassement de la mémoire tampon existe lorsqu'un programme tente de mettre plus de données dans un tampon qu'il ne peut en contenir. Dans ce cas, un tampon est une section séquentielle de mémoire allouée pour contenir tout ce qui va d'une chaîne de caractères à un tableau d'entiers. L'écriture en dehors des limites d'un bloc de mémoire allouée peut corrompre les données, planter le programme ou provoquer l'exécution de code malveillant. Il est donc tout a fait possible à l'heure actuelle de realiser cette operation sur le site.
+
+### Téléchargement de fichiers sans restriction
+
+Les fichiers téléchargés représentent un risque important pour les applications. L'utilisation d'un téléchargement de fichier aide l'attaquant à accomplir sa tache. Ici, il n'y a pas de sécurité. il peut tout a fait modifier le nom du fichier et faire croire que c'est un .png ou .jpg alors que c'est un script.

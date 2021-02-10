@@ -29,11 +29,11 @@ public class PostController {
     }
 
 
-
     @PutMapping(path="/{id}")
     public ResponseEntity<Post> UpdatePost(@PathVariable int id, @RequestParam(required = false) String title,
                                            @RequestParam(required = false) String text,
-                                           @RequestParam(required = false) Boolean ispublic) throws ResourceNotFoundException{
+                                           @RequestParam(required = false) Boolean ispublic,
+                                           @RequestParam(required = false) String photo) throws ResourceNotFoundException{
         Post myPost = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found :: " + id));
         if (title != null) {
@@ -45,9 +45,20 @@ public class PostController {
         if (ispublic != null) {
             myPost.setIspublic(ispublic);
         }
+            myPost.setPhoto(photo);
         postRepository.save(myPost);
         return ResponseEntity.ok().body(myPost);
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost (@PathVariable int id) throws ResourceNotFoundException {
+        Post myPost = postRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found :: " + id));
+
+        postRepository.delete(myPost);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/search/{name}")
     public @ResponseBody List<Post> GetPostsByName(@PathVariable String name) {
         List<Post> myPostsTitle = postRepository.findByTitleIsContainingIgnoreCase(name);

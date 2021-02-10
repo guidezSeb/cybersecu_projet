@@ -20,7 +20,9 @@ public class Post {
     private String text;
     @Column(columnDefinition = "boolean default false")
     private Boolean ispublic;
- 
+    @Column(nullable = true)
+    private String photo;
+
     @ManyToOne
     @JoinColumn(name = "author", referencedColumnName = "id", nullable = false)
     @JsonIgnoreProperties("friends")
